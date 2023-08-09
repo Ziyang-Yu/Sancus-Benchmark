@@ -48,12 +48,13 @@ python setup.py install
 
 4. Prepare datasets (edit the code according to your needs).
 ```
+export data_root=/dev/data
 //This may take a while.
 data_root=/dev/data python prepare_data.py
 ```
 5. Train.
 ```
-python main.py
+data_root=/dev/data python main.py
 ```
 
 

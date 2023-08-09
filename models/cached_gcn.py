@@ -53,7 +53,8 @@ def cached_broadcast(local_adj_parts, local_feature, tag):
         with env.timer.timing_cuda('broadcast'):
             if not use_cache(tag, src):
                 with env.timer.timing_cuda(f'broadcast {tag} {src}'):
-                    dist.broadcast(feature_bcast, src=src)
+                    # print(f"type: {type(feature_bcast)}")
+                    dist.broadcast(feature_bcast.contiguous(), src=src)
                     g_bcast_counter[tag][src] += 1
                     if g_cache_enabled[tag]:
                         g_cache[tag][src] = feature_bcast.clone()
